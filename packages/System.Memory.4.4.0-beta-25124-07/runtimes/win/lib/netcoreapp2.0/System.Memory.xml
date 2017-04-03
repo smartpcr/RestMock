@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Memory</name>
+    </assembly>
+    <members>
+        <member name="T:System.SpanExtensions">
+            <summary>
+            Extension methods for Span&lt;T&gt;.
+            </summary>
+        </member>
+        <member name="M:System.SpanExtensions.IndexOf``1(System.Span{``0},``0)">
+            <summary>
+            Searches for the specified value and returns the index of its first occurrence. If not found, returns -1. Values are compared using IEquatable&lt;T&gt;.Equals(T). 
+            </summary>
+            <param name="span">The span to search.</param>
+            <param name="value">The value to search for.</param>
+        </member>
+        <member name="M:System.SpanExtensions.IndexOf(System.Span{System.Byte},System.Byte)">
+            <summary>
+            Searches for the specified value and returns the index of its first occurrence. If not found, returns -1. 
+            </summary>
+            <param name="span">The span to search.</param>
+            <param name="value">The value to search for.</param>
+        </member>
+        <member name="M:System.SpanExtensions.IndexOf``1(System.Span{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Searches for the specified sequence and returns the index of its first occurrence. If not found, returns -1. Values are compared using IEquatable&lt;T&gt;.Equals(T). 
+            </summary>
+            <param name="span">The span to search.</param>
+            <param name="value">The sequence to search for.</param>
+        </member>
+        <member name="M:System.SpanExtensions.IndexOf(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Searches for the specified sequence and returns the index of its first occurrence. If not found, returns -1.
+            </summary>
+            <param name="span">The span to search.</param>
+            <param name="value">The sequence to search for.</param>
+        </member>
+        <member name="M:System.SpanExtensions.SequenceEqual``1(System.Span{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Determines whether two sequences are equal by comparing the elements using IEquatable&lt;T&gt;.Equals(T). 
+            </summary>
+        </member>
+        <member name="M:System.SpanExtensions.SequenceEqual(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Determines whether two sequences are equal by comparing the elements.
+            </summary>
+        </member>
+        <member name="M:System.SpanExtensions.IndexOf``1(System.ReadOnlySpan{``0},``0)">
+            <summary>
+            Searches for the specified value and returns the index of its first occurrence. If not found, returns -1. Values are compared using IEquatable&lt;T&gt;.Equals(T). 
+            </summary>
+            <param name="span">The span to search.</param>
+            <param name="value">The value to search for.</param>
+        </member>
+        <member name="M:System.SpanExtensions.IndexOf(System.ReadOnlySpan{System.Byte},System.Byte)">
+            <summary>
+            Searches for the specified value and returns the index of its first occurrence. If not found, returns -1. 
+            </summary>
+            <param name="span">The span to search.</param>
+            <param name="value">The value to search for.</param>
+        </member>
+        <member name="M:System.SpanExtensions.IndexOf``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Searches for the specified sequence and returns the index of its first occurrence. If not found, returns -1. Values are compared using IEquatable&lt;T&gt;.Equals(T). 
+            </summary>
+            <param name="span">The span to search.</param>
+            <param name="value">The sequence to search for.</param>
+        </member>
+        <member name="M:System.SpanExtensions.IndexOf(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Searches for the specified sequence and returns the index of its first occurrence. If not found, returns -1.
+            </summary>
+            <param name="span">The span to search.</param>
+            <param name="value">The sequence to search for.</param>
+        </member>
+        <member name="M:System.SpanExtensions.SequenceEqual``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Determines whether two sequences are equal by comparing the elements using IEquatable&lt;T&gt;.Equals(T). 
+            </summary>
+        </member>
+        <member name="M:System.SpanExtensions.SequenceEqual(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Determines whether two sequences are equal by comparing the elements.
+            </summary>
+        </member>
+        <member name="M:System.SpanExtensions.StartsWith(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Determines whether the specified sequence appears at the start of the span.
+            </summary>
+        </member>
+        <member name="M:System.SpanExtensions.StartsWith``1(System.Span{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Determines whether the specified sequence appears at the start of the span.
+            </summary>
+        </member>
+        <member name="M:System.SpanExtensions.StartsWith(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Determines whether the specified sequence appears at the start of the span.
+            </summary>
+        </member>
+        <member name="M:System.SpanExtensions.StartsWith``1(System.ReadOnlySpan{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Determines whether the specified sequence appears at the start of the span.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,563 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.AspNetCore.Server.Kestrel</name>
+    </assembly>
+    <members>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager">
+            <summary>
+            Manages the generation of the date header value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager"/> class.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager.GetDateHeaderValues">
+            <summary>
+            Returns a value representing the current server date/time for use in the HTTP "Date" response header
+            in accordance with http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.18
+            </summary>
+            <returns>The value in string and byte[] format.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager.Dispose">
+            <summary>
+            Releases all resources used by the current instance of <see cref="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager"/>.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager.StartTimer">
+            <summary>
+            Starts the timer
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager.StopTimer">
+            <summary>
+            Stops the timer
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.DateHeaderValueManager.SetDateValues(System.DateTimeOffset)">
+            <summary>
+            Sets date values from a provided ticks value
+            </summary>
+            <param name="value">A DateTimeOffset value</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame.Start">
+            <summary>
+            Called once by Connection class to begin the RequestProcessingAsync loop.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame.StopAsync">
+            <summary>
+            Should be called when the server wants to initiate a shutdown. The Task returned will
+            become complete when the RequestProcessingAsync function has exited. It is expected that
+            Stop will be called on all active connections, and Task.WaitAll() will be called on every
+            return value.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame.Abort(System.Exception)">
+            <summary>
+            Immediate kill the connection and poison the request and response streams.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame.RequestProcessingAsync">
+            <summary>
+            Primary loop which consumes socket input, parses it for protocol framing, and invokes the
+            application delegate for as long as the socket is intended to remain open.
+            The resulting Task from this loop is preserved in a field which is used when the server needs
+            to drain and close all currently active connections.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame`1.RequestProcessingAsync">
+            <summary>
+            Primary loop which consumes socket input, parses it for protocol framing, and invokes the
+            application delegate for as long as the socket is intended to remain open.
+            The resulting Task from this loop is preserved in a field which is used when the server needs
+            to drain and close all currently active connections.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.ISocketOutput">
+            <summary>
+              Operations performed for buffered socket output
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Listener">
+            <summary>
+            Base class for listeners in Kestrel. Listens for incoming connections
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Listener.CreateListenSocket">
+            <summary>
+            Creates the socket used to listen for incoming connections
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Listener.OnConnection(Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvStreamHandle,System.Int32)">
+            <summary>
+            Handles an incoming connection
+            </summary>
+            <param name="listenSocket">Socket being used to listen on</param>
+            <param name="status">Connection status</param>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.ListenerContext.CreateAcceptSocket">
+            <summary>
+            Creates a socket which can be used to accept an incoming connection.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.ListenerPrimary">
+            <summary>
+            A primary listener waits for incoming connections on a specified socket. Incoming
+            connections may be passed to a secondary listener to handle.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.ListenerSecondary">
+            <summary>
+            A secondary listener is delegated requests from a primary listener via a named pipe or
+            UNIX domain socket.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Http.MessageBody.ForChunkedEncoding">
+            <summary>
+              http://tools.ietf.org/html/rfc2616#section-3.6.1
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.Constants.DefaultServerAddress">
+            <summary>
+            The IPEndPoint Kestrel will bind to if nothing else is specified.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.Constants.UnixPipeHostPrefix">
+            <summary>
+            Prefix of host name used to specify Unix sockets in the configuration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.Constants.PipeDescriptorPrefix">
+            <summary>
+            Prefix of host name used to specify pipe file descriptor in the configuration.
+            </summary>
+        </member>
+        <member name="F:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.Constants.SocketDescriptorPrefix">
+            <summary>
+            Prefix of host name used to specify socket descriptor in the configuration.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.HttpUtilities.GetKnownMethod(System.Span{System.Byte},Microsoft.AspNetCore.Server.Kestrel.Internal.Http.HttpMethod@,System.Int32@)">
+            <summary>
+            Checks that up to 8 bytes from <paramref name="span"/> correspond to a known HTTP method.
+            </summary>
+            <remarks>
+            A "known HTTP method" can be an HTTP method name defined in the HTTP/1.1 RFC.
+            Since all of those fit in at most 8 bytes, they can be optimally looked up by reading those bytes as a long. Once
+            in that format, it can be checked against the known method.
+            The Known Methods (CONNECT, DELETE, GET, HEAD, PATCH, POST, PUT, OPTIONS, TRACE) are all less than 8 bytes
+            and will be compared with the required space. A mask is used if the Known method is less than 8 bytes.
+            To optimize performance the GET method will be checked first.
+            </remarks>
+            <returns><c>true</c> if the input matches a known string, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.HttpUtilities.GetKnownVersion(System.Span{System.Byte},Microsoft.AspNetCore.Server.Kestrel.Internal.Http.HttpVersion@,System.Byte@)">
+            <summary>
+            Checks 9 bytes from <paramref name="span"/>  correspond to a known HTTP version.
+            </summary>
+            <remarks>
+            A "known HTTP version" Is is either HTTP/1.0 or HTTP/1.1.
+            Since those fit in 8 bytes, they can be optimally looked up by reading those bytes as a long. Once
+            in that format, it can be checked against the known versions.
+            The Known versions will be checked with the required '\r'.
+            To optimize performance the HTTP/1.1 will be checked first.
+            </remarks>
+            <returns><c>true</c> if the input matches a known string, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.HttpUtilities.GetKnownVersion(System.Byte*,System.Int32)">
+            <summary>
+            Checks 9 bytes from <paramref name="location"/>  correspond to a known HTTP version.
+            </summary>
+            <remarks>
+            A "known HTTP version" Is is either HTTP/1.0 or HTTP/1.1.
+            Since those fit in 8 bytes, they can be optimally looked up by reading those bytes as a long. Once
+            in that format, it can be checked against the known versions.
+            The Known versions will be checked with the required '\r'.
+            To optimize performance the HTTP/1.1 will be checked first.
+            </remarks>
+            <returns><c>true</c> if the input matches a known string, <c>false</c> otherwise.</returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.HttpUtilities.GetKnownHttpScheme(System.Span{System.Byte},Microsoft.AspNetCore.Server.Kestrel.Internal.Http.HttpScheme@)">
+            <summary>
+            Checks 8 bytes from <paramref name="span"/> that correspond to 'http://' or 'https://'
+            </summary>
+            <param name="span">The span</param>
+            <param name="knownScheme">A reference to the known scheme, if the input matches any</param>
+            <returns>True when memory starts with known http or https schema</returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.ISystemClock">
+            <summary>
+            Abstracts the system clock to facilitate testing.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.ISystemClock.UtcNow">
+            <summary>
+            Retrieves the current system time in UTC.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.SystemClock">
+            <summary>
+            Provides access to the normal system clock.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.SystemClock.UtcNow">
+            <summary>
+            Retrieves the current system time in UTC.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.Internal.Infrastructure.UriUtilities.IsValidAuthorityCharacter(System.Byte)">
+            <summary>
+            Returns true if character is valid in the 'authority' section of a URI.
+            <see href="https://tools.ietf.org/html/rfc3986#section-3.2"/>
+            </summary>
+            <param name="ch">The character</param>
+            <returns></returns>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Disposable">
+            <summary>
+            Summary description for Disposable
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.KestrelThread">
+            <summary>
+            Summary description for KestrelThread
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.KestrelTrace">
+            <summary>
+            Summary description for KestrelTrace
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvConnectRequest">
+            <summary>
+            Summary description for UvWriteRequest
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvMemory">
+            <summary>
+            Summary description for UvMemory
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvShutdownReq">
+            <summary>
+            Summary description for UvShutdownRequest
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvWriteReq">
+            <summary>
+            Summary description for UvWriteRequest
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServer.CreateIPEndPoint(Microsoft.AspNetCore.Server.Kestrel.ServerAddress)">
+            <summary>
+            Returns an <see cref="T:System.Net.IPEndPoint"/> for the given host an port.
+            If the host parameter isn't "localhost" or an IP address, use IPAddress.Any.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.MaxResponseBufferSize">
+            <summary>
+            Gets or sets the maximum size of the response buffer before write
+            calls begin to block or return tasks that don't complete until the
+            buffer size drops below the configured limit.
+            </summary>
+            <remarks>
+            When set to null, the size of the response buffer is unlimited.
+            When set to zero, all write calls will block or return tasks that
+            don't complete until the entire response buffer is flushed.
+            Defaults to 65,536 bytes (64 KB).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.MaxRequestBufferSize">
+            <summary>
+            Gets or sets the maximum size of the request buffer.
+            </summary>
+            <remarks>
+            When set to null, the size of the request buffer is unlimited.
+            Defaults to 1,048,576 bytes (1 MB).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.MaxRequestLineSize">
+            <summary>
+            Gets or sets the maximum allowed size for the HTTP request line.
+            </summary>
+            <remarks>
+            Defaults to 8,192 bytes (8 KB).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.MaxRequestHeadersTotalSize">
+            <summary>
+            Gets or sets the maximum allowed size for the HTTP request headers.
+            </summary>
+            <remarks>
+            Defaults to 32,768 bytes (32 KB).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.MaxRequestHeaderCount">
+            <summary>
+            Gets or sets the maximum allowed number of headers per HTTP request.
+            </summary>
+            <remarks>
+            Defaults to 100.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.KeepAliveTimeout">
+            <summary>
+            Gets or sets the keep-alive timeout.
+            </summary>
+            <remarks>
+            Defaults to 2 minutes.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerLimits.RequestHeadersTimeout">
+            <summary>
+            Gets or sets the maximum amount of time the server will spend receiving request headers.
+            </summary>
+            <remarks>
+            Defaults to 30 seconds.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions">
+            <summary>
+            Provides programmatic configuration of Kestrel-specific features.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ListenOptions">
+            <summary>
+            Configures the endpoints that Kestrel should listen to.
+            </summary>
+            <remarks>
+            If this list is empty, the server.urls setting (e.g. UseUrls) is used.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.AddServerHeader">
+            <summary>
+            Gets or sets whether the <c>Server</c> header should be included in each response.
+            </summary>
+            <remarks>
+            Defaults to true.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ApplicationServices">
+            <summary>
+            Enables the Listen options callback to resolve and use services registered by the application during startup.
+            Typically initialized by <see cref="M:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel(Microsoft.AspNetCore.Hosting.IWebHostBuilder,System.Action{Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions})"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.MaxRequestBufferSize">
+            <summary>
+            <para>
+            This property is obsolete and will be removed in a future version.
+            Use <c>Limits.MaxRequestBufferSize</c> instead.
+            </para>
+            <para>
+            Gets or sets the maximum size of the request buffer.
+            </para>
+            </summary>
+            <remarks>
+            When set to null, the size of the request buffer is unlimited.
+            Defaults to 1,048,576 bytes (1 MB).
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Limits">
+            <summary>
+            Provides access to request limit options.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ShutdownTimeout">
+            <summary>
+            The amount of time after the server begins shutting down before connections will be forcefully closed.
+            Kestrel will wait for the duration of the timeout for any ongoing request processing to complete before
+            terminating the connection. No new connections or requests will be accepted during this time.
+            </summary>
+            <remarks>
+            Defaults to 5 seconds.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ThreadCount">
+            <summary>
+            The number of libuv I/O threads used to process requests.
+            </summary>
+            <remarks>
+            Defaults to half of <see cref="P:System.Environment.ProcessorCount" /> rounded down and clamped between 1 and 16.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Listen(System.Net.IPAddress,System.Int32)">
+            <summary>
+            Bind to given IP address and port.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Listen(System.Net.IPAddress,System.Int32,System.Action{Microsoft.AspNetCore.Server.Kestrel.ListenOptions})">
+            <summary>
+            Bind to given IP address and port.
+            The callback configures endpoint-specific settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Listen(System.Net.IPEndPoint)">
+            <summary>
+            Bind to given IP endpoint.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.Listen(System.Net.IPEndPoint,System.Action{Microsoft.AspNetCore.Server.Kestrel.ListenOptions})">
+            <summary>
+            Bind to given IP address and port.
+            The callback configures endpoint-specific settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ListenUnixSocket(System.String)">
+            <summary>
+            Bind to given Unix domain socket path.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ListenUnixSocket(System.String,System.Action{Microsoft.AspNetCore.Server.Kestrel.ListenOptions})">
+            <summary>
+            Bind to given Unix domain socket path.
+            Specify callback to configure endpoint-specific settings.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ListenHandle(System.UInt64)">
+            <summary>
+            Open a socket file descriptor.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.ListenHandle(System.UInt64,System.Action{Microsoft.AspNetCore.Server.Kestrel.ListenOptions})">
+            <summary>
+            Open a socket file descriptor.
+            The callback configures endpoint-specific settings.
+            </summary>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.ListenOptions">
+            <summary>
+            Describes either an <see cref="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.IPEndPoint"/>, Unix domain socket path, or a file descriptor for an already open
+            socket that Kestrel should bind to or open.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.Type">
+            <summary>
+            The type of interface being described: either an <see cref="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.IPEndPoint"/>, Unix domain socket path, or a file descriptor.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.IPEndPoint">
+            <summary>
+            The <see cref="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.IPEndPoint"/> to bind to.
+            Only set if the <see cref="T:Microsoft.AspNetCore.Server.Kestrel.ListenOptions"/> <see cref="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.Type"/> is <see cref="F:Microsoft.AspNetCore.Server.Kestrel.ListenType.IPEndPoint"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.SocketPath">
+            <summary>
+            The absolute path to a Unix domain socket to bind to.
+            Only set if the <see cref="T:Microsoft.AspNetCore.Server.Kestrel.ListenOptions"/> <see cref="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.Type"/> is <see cref="F:Microsoft.AspNetCore.Server.Kestrel.ListenType.SocketPath"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.FileHandle">
+            <summary>
+            A file descriptor for the socket to open.
+            Only set if the <see cref="T:Microsoft.AspNetCore.Server.Kestrel.ListenOptions"/> <see cref="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.Type"/> is <see cref="F:Microsoft.AspNetCore.Server.Kestrel.ListenType.FileHandle"/>.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.KestrelServerOptions">
+            <summary>
+            Enables an <see cref="T:Microsoft.AspNetCore.Server.Kestrel.Adapter.IConnectionAdapter"/> to resolve and use services registered by the application during startup.
+            Only set if accessed from the callback of a <see cref="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.KestrelServerOptions"/> Listen* method.
+            </summary>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.NoDelay">
+            <summary>
+            Set to false to enable Nagle's algorithm for all connections.
+            </summary>
+            <remarks>
+            Defaults to true.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.AspNetCore.Server.Kestrel.ListenOptions.ConnectionAdapters">
+            <summary>
+            Gets the <see cref="T:System.Collections.Generic.List`1"/> that allows each connection <see cref="T:System.IO.Stream"/>
+            to be intercepted and transformed.
+            Configured by the <c>UseHttps()</c> and <see cref="M:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging(Microsoft.AspNetCore.Server.Kestrel.ListenOptions)"/>
+            extension methods.
+            </summary>
+            <remarks>
+            Defaults to empty.
+            </remarks>
+        </member>
+        <member name="T:Microsoft.AspNetCore.Server.Kestrel.ListenType">
+            <summary>
+            Enumerates the <see cref="T:Microsoft.AspNetCore.Server.Kestrel.ListenOptions"/> types.
+            </summary>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging(Microsoft.AspNetCore.Server.Kestrel.ListenOptions)">
+            <summary>
+            Emits verbose logs for bytes read from and written to the connection.
+            </summary>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Server.Kestrel.ListenOptions"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Hosting.ListenOptionsConnectionLoggingExtensions.UseConnectionLogging(Microsoft.AspNetCore.Server.Kestrel.ListenOptions,System.String)">
+            <summary>
+            Emits verbose logs for bytes read from and written to the connection.
+            </summary>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Server.Kestrel.ListenOptions"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Hosting.KesterlServerOptionsSystemdExtensions.UseSystemd(Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions)">
+            <summary>
+            Open file descriptor (SD_LISTEN_FDS_START) initialized by systemd socket-based activation logic if available.
+            </summary>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Hosting.KesterlServerOptionsSystemdExtensions.UseSystemd(Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions,System.Action{Microsoft.AspNetCore.Server.Kestrel.ListenOptions})">
+            <summary>
+            Open file descriptor (SD_LISTEN_FDS_START) initialized by systemd socket-based activation logic if available.
+            Specify callback to configure endpoint-specific settings.
+            </summary>
+            <returns>
+            The <see cref="T:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions"/>.
+            </returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel(Microsoft.AspNetCore.Hosting.IWebHostBuilder)">
+            <summary>
+            Specify Kestrel as the server to be used by the web host.
+            </summary>
+            <param name="hostBuilder">
+            The Microsoft.AspNetCore.Hosting.IWebHostBuilder to configure.
+            </param>
+            <returns>
+            The Microsoft.AspNetCore.Hosting.IWebHostBuilder.
+            </returns>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.UseKestrel(Microsoft.AspNetCore.Hosting.IWebHostBuilder,System.Action{Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions})">
+            <summary>
+            Specify Kestrel as the server to be used by the web host.
+            </summary>
+            <param name="hostBuilder">
+            The Microsoft.AspNetCore.Hosting.IWebHostBuilder to configure.
+            </param>
+            <param name="options">
+            A callback to configure Kestrel options.
+            </param>
+            <returns>
+            The Microsoft.AspNetCore.Hosting.IWebHostBuilder.
+            </returns>
+        </member>
+        <member name="F:Microsoft.Extensions.Internal.TaskCache.CompletedTask">
+            <summary>
+            A <see cref="T:System.Threading.Tasks.Task"/> that's already completed successfully.
+            </summary>
+            <remarks>
+            We're caching this in a static readonly field to make it more inlinable and avoid the volatile lookup done
+            by <c>Task.CompletedTask</c>.
+            </remarks>
+        </member>
+        <member name="P:Microsoft.Extensions.Internal.TaskCache`1.DefaultCompletedTask">
+            <summary>
+            Gets a completed <see cref="T:System.Threading.Tasks.Task"/> with the value of <c>default(T)</c>.
+            </summary>
+        </member>
+    </members>
+</doc>

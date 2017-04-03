@@ -1,0 +1,14 @@
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Kayak.Tests.dll
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Kayak.Tests.pdb
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Kayak.dll
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Kayak.pdb
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\work\github\RestMock\Kayak.Tests\bin\Release\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\work\github\RestMock\Kayak.Tests\obj\Release\Kayak.Tests.csprojResolveAssemblyReference.cache
+D:\work\github\RestMock\Kayak.Tests\obj\Release\Kayak.Tests.dll
+D:\work\github\RestMock\Kayak.Tests\obj\Release\Kayak.Tests.pdb
